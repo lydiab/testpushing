@@ -15,7 +15,7 @@ public class JavaApplication1 {
      */
     public static void main(String[] args) {
         int tref;
-        int si;
+        int sffi;
         
         tref=3;
         
