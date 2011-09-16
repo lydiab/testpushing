@@ -15,6 +15,7 @@ public class JavaApplication1 {
      */
     public static void main(String[] args) {
         int tref;
+        int s;
         
         tref=3;
         
