@@ -16,7 +16,7 @@ public class e {
 	    dec2 = new DecimalFormat ( "0.00" );
 	    
 	    DecimalFormat  dec4;                 
-	    dec4 = new DecimalFormat ( "0.0000dsdadasd" );
+	    dec4 = new DecimalFormat ( "0.0000" );
 	    
 		
 		double capitalFinal = 100000.0000;
