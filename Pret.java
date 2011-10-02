@@ -10,23 +10,23 @@ package ca.uqam.inf2015.aut2011.protagoras;
  */
 public class Pret {
     
-    private int _id;
-    private String _description;
-    private double _montant;
-    private int _nombreAnnee;
-    private int _frequenceRemboursement;
-    private double _tauxInteret;
-    private int _frequenceComposition;
+    private String id;
+    private String description;
+    private double montant;
+    private int nombreAnnee;
+    private int frequenceRemboursement;
+    private double tauxInteret;
+    private int frequenceComposition;
     
     public Pret() {
         
-        _id = 0;
-        _description = "";
-        _montant= 0;
-        _nombreAnnee = 0;
-        _frequenceRemboursement = 0;
-        _tauxInteret = 0;
-        _frequenceComposition = 0;
+        id = "";
+        description = "";
+        montant= 0;
+        nombreAnnee = 0;
+        frequenceRemboursement = 0;
+        tauxInteret = 0;
+        frequenceComposition = 0;
     }
     
     /**
@@ -34,82 +34,82 @@ public class Pret {
                      int frequenceRemboursement, double tauxInteret, 
                      int frequenceComposition) {
     
-        _id = id;
-        _description = description;
-        _montant= montant;
-        _nombreAnnee = nombreAnnee;
-        _frequenceRemboursement = frequenceRemboursement;
-        _tauxInteret = tauxInteret;
-        _frequenceComposition = frequenceComposition;
+        id = id;
+        description = description;
+        montant= montant;
+        nombreAnnee = nombreAnnee;
+        frequenceRemboursement = frequenceRemboursement;
+        tauxInteret = tauxInteret;
+        frequenceComposition = frequenceComposition;
     }
     */
-    public int getId() {
+    public String getId() {
         
-        return _id;
+        return id;
     }
     
     public String getDescription() {
         
-        return _description;
+        return description;
     }
     
     public double getMontant() {
         
-        return _montant;
+        return montant;
     }
     
     public int getNombreAnnee() {
     
-        return _nombreAnnee;
+        return nombreAnnee;
     }
     
     public int getFrequenceRemboursement() {
         
-        return _frequenceRemboursement;
+        return frequenceRemboursement;
     }
     
     public double getTauxInteret() {
         
-        return _tauxInteret;
+        return tauxInteret;
     }
     
     public int getFrequenceComposition() {
         
-        return _frequenceComposition;
+        return frequenceComposition;
     }
     
     
-    public void setId(int id) {
-        _id = id;
+    public void setId(String id) {
+        this.id = id;
     }
     
     public void setDescription(String description) {
         
-        _description = description;
+        this.description = description;
     }
     
     public void setMontant(double montant) {
         
-        _montant = montant;
+        this.montant = montant;
     }
     
     public void setNombreAnnee(int nombreAnnee) {
         
-        _nombreAnnee = nombreAnnee;
+        this.nombreAnnee = nombreAnnee;
     }
     
     public void setFrequenceRemboursement(int frequenceRemboursement) {
         
-        _frequenceRemboursement = frequenceRemboursement;
+        this.frequenceRemboursement = frequenceRemboursement;
     }
     
     public void setTauxInteret(double tauxInteret) {
         
-        _tauxInteret = tauxInteret;
+        this.tauxInteret = tauxInteret;
     }
     
     public void setFrequenceComposition(int frequenceComposition) {
         
-        _frequenceComposition = frequenceComposition;
+        this.frequenceComposition = frequenceComposition;
     }
 }

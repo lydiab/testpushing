@@ -12,44 +12,44 @@ import java.util.ArrayList;
  */
 public class PretCalcule extends Pret {
     
-    private double _versementPeriodique;
-    private ArrayList _amortissement;
+    private double versementPeriodique;
+    private ArrayList amortissement;
     
     
     public PretCalcule() {
         
         super();
-        _versementPeriodique = 0;
-        _amortissement = new ArrayList();
+        versementPeriodique = 0;
+        amortissement = new ArrayList();
     }
     
     public double getVersementPeriodique() {
         
-        return _versementPeriodique;
+        return versementPeriodique;
     }
     
     public void setVersementPeriodique(double versementPeriodique) {
         
-        _versementPeriodique = versementPeriodique;
+        this.versementPeriodique = versementPeriodique;
     }
     
     public ArrayList getAmortissement() {
         
-        return _amortissement;
+        return amortissement;
     }
     
     public void setAmortissement(ArrayList amortissement) {
         
-        _amortissement = amortissement;
+        this.amortissement = amortissement;
     }
     
     public void ajouterAmortissement(Periode amortissement) {
         
-        _amortissement.add(amortissement);
+        this.amortissement.add(amortissement);
     }
     
     public void supprimerAmortissement(int index) {
         
-        _amortissement.remove(index);
+        amortissement.remove(index);
     }
 }

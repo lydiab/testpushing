@@ -10,100 +10,100 @@ package ca.uqam.inf2015.aut2011.protagoras;
  */
 public class Periode {
     
-    private int _periode;
-    private double _capitalDebut;
-    private double _versementTotal;
-    private double _versementInteret;
-    private double _versementCapital;
-    private double _capitalFin;
-    private double _versementTotalCumulatif;
-    private double _versementInteretCumulatif;
-    private double _versementCapitalCumulatif;
+    private int periode;
+    private double capitalDebut;
+    private double versementTotal;
+    private double versementInteret;
+    private double versementCapital;
+    private double capitalFin;
+    private double versementTotalCumulatif;
+    private double versementInteretCumulatif;
+    private double versementCapitalCumulatif;
     
     public int getPreriode() {
         
-        return _periode;
+        return periode;
     }
     
     public double getCapitalDebut() {
         
-        return _capitalDebut;
+        return capitalDebut;
     }
     
     public double getVersementTotal() {
         
-        return _versementTotal;
+        return versementTotal;
     }
     
     public double getVersementInteret() {
         
-        return _versementInteret;
+        return versementInteret;
     }
     
     public double getVersementCapital() {
         
-        return _versementCapital;
+        return versementCapital;
     }
             
     public double getCapitalFin() {
         
-        return _capitalFin;
+        return capitalFin;
     }
     
     public double getVersementTotalCumulatif() {
         
-        return _versementTotalCumulatif;
+        return versementTotalCumulatif;
     }
     
     public double getVersementInteretCumulatif() {
         
-        return _versementInteretCumulatif;
+        return versementInteretCumulatif;
     }
     
     public double getVersementCapitalCumulatif() {
         
-        return _versementCapitalCumulatif;
+        return versementCapitalCumulatif;
     }
     
     
     public void setPeriode(int periode) {
         
-        _periode = periode;
+        this.periode = periode;
     }
     
     public void setVersementTotal(double versementTotal) {
         
-        _versementTotal = versementTotal;
+        this.versementTotal = versementTotal;
     }
     
     public void setVersementInteret(double versementInteret) {
         
-        _versementInteret = versementInteret;
+        this.versementInteret = versementInteret;
     }
     
     public void setVersementCapital(double versementCapital) {
         
-        _versementCapital = versementCapital;
+        this.versementCapital = versementCapital;
     }
     
     public void setCapitalFin(double capitalFin) {
         
-        _capitalFin = capitalFin;
+        this.capitalFin = capitalFin;
     }
     
     public void setVersementTotalCumulatif(double versementTotalCumulatif) {
         
-        _versementTotalCumulatif = versementTotalCumulatif;
+        this.versementTotalCumulatif = versementTotalCumulatif;
     }
     
     public void setVersementInteretCumulatif(double versementInteretCumulatif) {
         
-        _versementInteretCumulatif = versementInteretCumulatif;
+        this.versementInteretCumulatif = versementInteretCumulatif;
     }
     
     public void setVersementCapitalCumulatif(double versementCapitalCumulatif) {
         
-        _versementCapitalCumulatif = versementCapitalCumulatif;
+        this.versementCapitalCumulatif = versementCapitalCumulatif;
     }
     
 }
