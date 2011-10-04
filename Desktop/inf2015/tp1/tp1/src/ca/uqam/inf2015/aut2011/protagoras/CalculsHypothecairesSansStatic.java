@@ -1,6 +1,6 @@
 /*
  * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * and open the template in the editor....
  */
 package ca.uqam.inf2015.aut2011.protagoras;
 
@@ -10,42 +10,50 @@ import java.util.ArrayList;
  *
  * @author Netbook
  */
-public class CalculsHypothecaires {
-  
+public class CalculsHypothecairesSansStatic {
  
-    private  static double interetCumulatif = 0;
-    private  static double capitalCumulatif = 0;
-    private  static double capitalDebut = 0;
-    private  static double tauxMensuel = 0;
-    private  static double versementPeriodique = 0;
+    private double interetCumulatif ;
+    private double capitalCumulatif ;
+    private double capitalDebut ;
+    private double tauxMensuel ;
+    private double versementPeriodique ;
+   
+    private PretCalcule pretCalcule;
     
-    
-    
-    /**
+
+    public CalculsHypothecairesSansStatic() {
+    	
+	this.interetCumulatif = 0;
+	this.capitalCumulatif = 0;
+	this.capitalDebut = 0;
+	this.tauxMensuel = 0;
+	this.versementPeriodique = 0;
+	this.pretCalcule = new PretCalcule ();
+                
+    }
+
+
+	/**
      * Cree un pret calcule avec periode d'amortissement et versement periodique
      * @param pret pret a calcule
      * @return pretCalcule 
      */
-    public static PretCalcule creerPretCalcule (Pret pret){
+    public PretCalcule creerPretCalcule (Pret pret){
         
-        PretCalcule pretCalcule = new PretCalcule ();
-     
-        enregistrerInfoPret (pretCalcule, pret);
-        pretCalcule.setVersementPeriodique(calculerVersementPeriodique(pretCalcule));
-        pretCalcule.setAmortissement(creerTableauAmortissement(pretCalcule));
-        
-        reinitialiserVariableClasse();
+        enregistrerInfoPret (pret);     
+        pretCalcule.setVersementPeriodique(calculerVersementPeriodique());
+        pretCalcule.setAmortissement(creerTableauAmortissement()); 
          
         return pretCalcule ;
     }
     
     
     /**
-     * Enregistre les infos du pret dand le pret Calcule
+     * Enregistre les infos du pret dand le pret a calcule
      * @param pretCalcule pret a calcule
      * @param pret contenant les infos du pret � calculer
      */
-   private static void enregistrerInfoPret (PretCalcule pretCalcule, Pret pret){
+   private void enregistrerInfoPret (Pret pret){
        
        pretCalcule.setId(pret.getId());
        pretCalcule.setDescription(pret.getDescription());
@@ -55,7 +63,7 @@ public class CalculsHypothecaires {
        pretCalcule.setTauxInteret(pret.getTauxInteret());
        pretCalcule.setFrequenceComposition(pret.getFrequenceComposition());
        
-       capitalDebut = pretCalcule.getMontant();
+       capitalDebut = pretCalcule.getMontant(); 
        
    }
     
@@ -65,20 +73,19 @@ public class CalculsHypothecaires {
      * @param pretCalcule 
      * @return versement peiodique
      */
-    private static double calculerVersementPeriodique (PretCalcule pretCalcule){
+    private double calculerVersementPeriodique (){
         
         int frequenceRemboursement = pretCalcule.getFrequenceRemboursement();
         int nombreAnnee = pretCalcule.getNombreAnnee();
         
-        tauxMensuel = calculerTauxMensuel(pretCalcule);
+        tauxMensuel = calculerTauxMensuel();
         
         
         versementPeriodique = (capitalDebut * tauxMensuel) / 
                               (1 - (1/ Math.pow((1 + tauxMensuel),
                               (frequenceRemboursement*nombreAnnee))));
-        
+         
         return versementPeriodique;
-        
     }
     
 
@@ -87,7 +94,7 @@ public class CalculsHypothecaires {
      * @param pretCalcule
      * @return tauxmensuel
      */
-    private static double calculerTauxMensuel (PretCalcule pretCalcule){
+    private double calculerTauxMensuel (){
         
         double tauxInteret = pretCalcule.getTauxInteret()/ 100;
         double frequenceComposition = pretCalcule.getFrequenceComposition();
@@ -95,9 +102,8 @@ public class CalculsHypothecaires {
         
         double tauxMensuelCalcule = (Math.pow((1 + tauxInteret/frequenceComposition),
                              (frequenceComposition/frequenceRemboursement))- 1);
-        
-        return tauxMensuelCalcule; 
-        
+       
+        return tauxMensuelCalcule;  
     }
        
     
@@ -106,7 +112,7 @@ public class CalculsHypothecaires {
      * @param pretCalcule
      * @return amortissement
      */
-    private static ArrayList <Periode>  creerTableauAmortissement(PretCalcule pretCalcule){
+    private ArrayList <Periode>  creerTableauAmortissement(){
        
        ArrayList <Periode> amortissement = new ArrayList <Periode> ();
        int numeroPeriode = 0;
@@ -118,7 +124,6 @@ public class CalculsHypothecaires {
        }    
        
        return amortissement;
-       
     }
     
     /**
@@ -127,21 +132,20 @@ public class CalculsHypothecaires {
      * @param numeroPeriode 
      * @return periodeCalcule periode avec les resultats du calculs
      */
-    private static Periode creerPeriode (int numeroPeriode){
+    private Periode creerPeriode (int numeroPeriode){
             
         Periode periodeCalcule = new Periode ();
         
         
         periodeCalcule.setPeriode(numeroPeriode);
-        periodeCalcule.setVersementTotal(versementPeriodique);
-        inscrireVersementTotalCumulatif(periodeCalcule) ;
-        inscrireVersementInteret(periodeCalcule);   
-        inscrireVersementInteretCumulatif(periodeCalcule); 
-        inscrireVersementCapital(periodeCalcule);
-        inscrireVersementCapitalCumulatif (periodeCalcule);
+        periodeCalcule.setVersementTotal(versementPeriodique);    
+        inscrireVersementTotalCumulatif(periodeCalcule) ;        
+        inscrireVersementInteret(periodeCalcule);         
+        inscrireVersementInteretCumulatif(periodeCalcule);      
+        inscrireVersementCapital(periodeCalcule);      
+        inscrireVersementCapitalCumulatif (periodeCalcule);       
         inscrireCapitalDebutFin(periodeCalcule);
-        
-            
+          
         return periodeCalcule; 
     
     }
@@ -150,7 +154,7 @@ public class CalculsHypothecaires {
      * Calcul et inscrit le versement total cumulatif
      * @param periodeCalcule 
      */
-     private static void inscrireVersementTotalCumulatif(Periode periodeCalcule ){
+     private void inscrireVersementTotalCumulatif(Periode periodeCalcule ){
         
         int nombreVersements = periodeCalcule.getPreriode();
         double versementTotalCumulatif = nombreVersements*versementPeriodique;
@@ -163,9 +167,10 @@ public class CalculsHypothecaires {
      * Calcul et inscrit le versement en interet periodique  
      * @param periodeCalcule
      */
-    private static void inscrireVersementInteret (Periode periodeCalcule){
+    private void inscrireVersementInteret (Periode periodeCalcule){
        
         double versementInteret = capitalDebut*tauxMensuel;
+        
         periodeCalcule.setVersementInteret(versementInteret);
                   
     }
@@ -174,13 +179,12 @@ public class CalculsHypothecaires {
      * Calcul et inscrit le versement total en interet � ce jour 
      * @param periodeCalcule
      */
-    private static void inscrireVersementInteretCumulatif(Periode periodeCalcule){
+    private void inscrireVersementInteretCumulatif(Periode periodeCalcule){
     
         double interetVerse = periodeCalcule.getVersementInteret();
-        
         interetCumulatif = interetCumulatif + interetVerse;
-        periodeCalcule.setVersementInteretCumulatif(interetCumulatif);
         
+        periodeCalcule.setVersementInteretCumulatif(interetCumulatif);
     }
     
     
@@ -188,15 +192,14 @@ public class CalculsHypothecaires {
      * Calcule et inscrit le versement en capital periodique
      * @param periodeCalcule
      */
-    private static void inscrireVersementCapital(Periode periodeCalcule){
+    private void inscrireVersementCapital(Periode periodeCalcule){
     	
-    	double interetVerse = periodeCalcule.getVersementInteret();
-            
+    	double interetVerse = periodeCalcule.getVersementInteret();   
         double versementCapital = versementPeriodique - interetVerse;
         
         periodeCalcule.setVersementCapital(versementCapital);
         
-    }
+        }
        
     
     
@@ -204,7 +207,7 @@ public class CalculsHypothecaires {
      * Calcule et inscrit le versement en capital total a ce jour 
      * @param periodeCalcule
      */
-    private static void inscrireVersementCapitalCumulatif (Periode periodeCalcule){
+    private void inscrireVersementCapitalCumulatif (Periode periodeCalcule){
         
       double capitalVerse = periodeCalcule.getVersementCapital();
             
@@ -217,10 +220,9 @@ public class CalculsHypothecaires {
      * Calcul le capital de la fin de la periode et inscrit les capitals debut et fin
      * @param periodeCalcule
      */
-    private static void inscrireCapitalDebutFin(Periode periodeCalcule){
+    private void inscrireCapitalDebutFin(Periode periodeCalcule){
     	
-    	double versementCapital = periodeCalcule.getVersementCapital();
-           
+    	double versementCapital = periodeCalcule.getVersementCapital();    
         double capitalFin = capitalDebut - versementCapital;
             
         periodeCalcule.setCapitalDebut(capitalDebut);
@@ -229,15 +231,5 @@ public class CalculsHypothecaires {
         capitalDebut = capitalFin;
             
         }
-      
-     private static void reinitialiserVariableClasse (){
-         
-        interetCumulatif = 0;
-        capitalCumulatif = 0;
-        capitalDebut = 0;
-        tauxMensuel = 0;
-        versementPeriodique = 0;
-        
-     }
 
 }
