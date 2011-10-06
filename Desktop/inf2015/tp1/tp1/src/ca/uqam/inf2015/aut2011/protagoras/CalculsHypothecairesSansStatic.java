@@ -44,7 +44,7 @@ public class CalculsHypothecairesSansStatic {
         pretCalcule.setVersementPeriodique(calculerVersementPeriodique());
         pretCalcule.setAmortissement(creerTableauAmortissement()); 
          
-        return pretCalcule ;
+        return pretCalcule;
     }
     
     
