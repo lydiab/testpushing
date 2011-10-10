@@ -111,15 +111,6 @@ public class Periode {
     
     /**
      * 
-     * @param double Le capital de début
-     */
-    public void setCapitalDebut(double capitalDebut) {
-        
-        this.capitalDebut = capitalDebut;
-    }
-    
-    /**
-     * 
      * @param double Le versement total
      */
     public void setVersementTotal(double versementTotal) {
