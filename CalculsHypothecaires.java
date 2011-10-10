@@ -4,6 +4,7 @@
  */
 package ca.uqam.inf2015.aut2011.protagoras;
 
+import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -22,14 +23,12 @@ public class CalculsHypothecaires {
     private double versementPeriodique = 0;
     
     
-
-    
     /**
      * Cree un pret calcule avec periode d'amortissement et versement periodique
      * @param pret pret a calcule
      * @return pretCalcule 
      */
-    public PretCalcule creerPretCalcule (Pret pret){
+    public PretCalcule creerPretCalcule (Pret pret) throws ParseException{
         
         PretCalcule pretCalcule = new PretCalcule ();
      
@@ -66,7 +65,7 @@ public class CalculsHypothecaires {
      * @param pretCalcule 
      * @return versement peiodique
      */
-    public double calculerVersementPeriodique (PretCalcule pretCalcule){
+    public double calculerVersementPeriodique (PretCalcule pretCalcule) throws ParseException{
         
         int frequenceRemboursement = pretCalcule.getFrequenceRemboursement();
         int nombreAnnee = pretCalcule.getNombreAnnee();
@@ -74,11 +73,15 @@ public class CalculsHypothecaires {
         tauxMensuel = calculerTauxMensuel(pretCalcule);
         
         
-        versementPeriodique = (capitalDebut * tauxMensuel) / 
+        double versementPeriodiqueCalcule = (capitalDebut * tauxMensuel) / 
                               (1 - (1/ Math.pow((1 + tauxMensuel),
                               (frequenceRemboursement*nombreAnnee))));
         
-
+       
+        versementPeriodique = formater2decimales(versementPeriodiqueCalcule);
+        
+        
+        
         return versementPeriodique;
         
     }
@@ -98,6 +101,8 @@ public class CalculsHypothecaires {
         double tauxMensuelCalcule = (Math.pow((1 + tauxInteret/frequenceComposition),
                              (frequenceComposition/frequenceRemboursement))- 1);
         
+      
+        
         return tauxMensuelCalcule; 
         
     }
@@ -108,7 +113,7 @@ public class CalculsHypothecaires {
      * @param pretCalcule
      * @return amortissement
      */
-    public ArrayList <Periode>  creerTableauAmortissement(PretCalcule pretCalcule){
+    public ArrayList <Periode>  creerTableauAmortissement(PretCalcule pretCalcule) throws ParseException{
        
        ArrayList <Periode> amortissement = new ArrayList <Periode> ();
        int numeroPeriode = 0;
@@ -129,7 +134,7 @@ public class CalculsHypothecaires {
      * @param numeroPeriode 
      * @return periodeCalcule periode avec les resultats du calculs
      */
-    public Periode creerPeriode (int numeroPeriode){
+    public Periode creerPeriode (int numeroPeriode) throws ParseException{
             
         Periode periodeCalcule = new Periode ();
         
@@ -152,11 +157,11 @@ public class CalculsHypothecaires {
      * Calcul et inscrit le versement total cumulatif
      * @param periodeCalcule 
      */
-     private void inscrireVersementTotalCumulatif(Periode periodeCalcule ){
+     private void inscrireVersementTotalCumulatif(Periode periodeCalcule ) throws ParseException{
         
         int nombreVersements = periodeCalcule.getPreriode();
         double versementTotalCumulatif = nombreVersements*versementPeriodique;
-        
+        versementTotalCumulatif = formater2decimales(versementTotalCumulatif);
         periodeCalcule.setVersementTotalCumulatif(versementTotalCumulatif);
  
     }
@@ -165,9 +170,10 @@ public class CalculsHypothecaires {
      * Calcul et inscrit le versement en interet periodique  
      * @param periodeCalcule
      */
-    private void inscrireVersementInteret (Periode periodeCalcule){
+    private void inscrireVersementInteret (Periode periodeCalcule) throws ParseException{
        
         double versementInteret = capitalDebut*tauxMensuel;
+        versementInteret  = formater2decimales(versementInteret);
         periodeCalcule.setVersementInteret(versementInteret);
                   
     }
@@ -176,12 +182,13 @@ public class CalculsHypothecaires {
      * Calcul et inscrit le versement total en interet � ce jour 
      * @param periodeCalcule
      */
-    private void inscrireVersementInteretCumulatif(Periode periodeCalcule){
+    private void inscrireVersementInteretCumulatif(Periode periodeCalcule) throws ParseException{
     
         double interetVerse = periodeCalcule.getVersementInteret();
         
         interetCumulatif = interetCumulatif + interetVerse;
-        periodeCalcule.setVersementInteretCumulatif(interetCumulatif);
+        
+        periodeCalcule.setVersementInteretCumulatif(formater2decimales(interetCumulatif));
         
     }
     
@@ -190,11 +197,16 @@ public class CalculsHypothecaires {
      * Calcule et inscrit le versement en capital periodique
      * @param periodeCalcule
      */
-    private void inscrireVersementCapital(Periode periodeCalcule){
+    private void inscrireVersementCapital(Periode periodeCalcule) throws ParseException{
     	
     	double interetVerse = periodeCalcule.getVersementInteret();
+        
+        System.out.println(interetVerse);
+        System.out.println(versementPeriodique);
             
         double versementCapital = versementPeriodique - interetVerse;
+        
+        versementCapital = formater2decimales(versementCapital);
         
         periodeCalcule.setVersementCapital(versementCapital);
         
@@ -206,11 +218,13 @@ public class CalculsHypothecaires {
      * Calcule et inscrit le versement en capital total a ce jour 
      * @param periodeCalcule
      */
-    private void inscrireVersementCapitalCumulatif (Periode periodeCalcule){
+    private void inscrireVersementCapitalCumulatif (Periode periodeCalcule) throws ParseException{
         
       double capitalVerse = periodeCalcule.getVersementCapital();
             
       capitalCumulatif = capitalCumulatif + capitalVerse;
+      
+      capitalCumulatif = formater2decimales(capitalCumulatif);
       periodeCalcule.setVersementCapitalCumulatif(capitalCumulatif);  
         
     }
@@ -219,12 +233,14 @@ public class CalculsHypothecaires {
      * Calcul le capital de la fin de la periode et inscrit les capitals debut et fin
      * @param periodeCalcule
      */
-    private void inscrireCapitalDebutFin(Periode periodeCalcule){
+    private void inscrireCapitalDebutFin(Periode periodeCalcule) throws ParseException{
     	
     	double versementCapital = periodeCalcule.getVersementCapital();
            
         double capitalFin = capitalDebut - versementCapital;
-            
+        
+        capitalDebut = formater2decimales(capitalDebut);
+        capitalFin = formater2decimales(capitalFin);
         periodeCalcule.setCapitalDebut(capitalDebut);
         periodeCalcule.setCapitalFin(capitalFin);
             
@@ -232,13 +248,13 @@ public class CalculsHypothecaires {
             
         }   
     
-    public double formater2decimales (Double nombre) throws ParseException{
+    public double formater2decimales (double nombre) throws ParseException{
         
-        DecimalFormat format = new DecimalFormat ("0.00");
-        String nombreFormate  = format.format(nombre);
+        BigDecimal big = new BigDecimal(Double.toString(nombre));
+        big = big.setScale(2,BigDecimal.ROUND_HALF_UP);
        
-        Double doubleFormate = (Double) format.parse(nombreFormate);
+        System.out.println(big);
         
-        return doubleFormate;
+        return big.doubleValue(); 
     }
 }

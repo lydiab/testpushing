@@ -29,20 +29,20 @@ public class Pret {
         frequenceComposition = 0;
     }
     
-    /**
-    public Pret(int id, String description, double montant, int nombreAnnee,
+    
+    public Pret(String id, String description, double montant, int nombreAnnee,
                      int frequenceRemboursement, double tauxInteret, 
                      int frequenceComposition) {
     
-        id = id;
-        description = description;
-        montant= montant;
-        nombreAnnee = nombreAnnee;
-        frequenceRemboursement = frequenceRemboursement;
-        tauxInteret = tauxInteret;
-        frequenceComposition = frequenceComposition;
+        this.id = id;
+        this.description = description;
+        this.montant = montant;
+        this.nombreAnnee = nombreAnnee;
+        this.frequenceRemboursement = frequenceRemboursement;
+        this.tauxInteret = tauxInteret;
+        this.frequenceComposition = frequenceComposition;
     }
-    */
+    
     public String getId() {
         
         return id;
