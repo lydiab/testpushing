@@ -34,6 +34,10 @@ public class Periode {
         
         return versementTotal;
     }
+
+    public void setCapitalDebut(double capitalDebut) {
+        this.capitalDebut = capitalDebut;
+    }
     
     public double getVersementInteret() {
         
