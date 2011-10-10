@@ -31,8 +31,6 @@ public class Pret {
         frequenceComposition = 0;
     }
     
-<<<<<<< HEAD
-    
     public Pret(String id, String description, double montant, int nombreAnnee,
                      int frequenceRemboursement, double tauxInteret, 
                      int frequenceComposition) {
@@ -45,13 +43,11 @@ public class Pret {
         this.tauxInteret = tauxInteret;
         this.frequenceComposition = frequenceComposition;
     }
-    
-=======
+
     /**
      * 
      * @return String Id du prêt
      */
->>>>>>> 6983f181e1d0b1d2173b50df55f3ec3c6be2be12
     public String getId() {
         
         return id;
