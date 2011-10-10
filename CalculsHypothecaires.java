@@ -20,6 +20,7 @@ public class CalculsHypothecaires {
     private  static double versementPeriodique = 0;
     
     
+
     
     /**
      * Cree un pret calcule avec periode d'amortissement et versement periodique
@@ -77,6 +78,7 @@ public class CalculsHypothecaires {
                               (1 - (1/ Math.pow((1 + tauxMensuel),
                               (frequenceRemboursement*nombreAnnee))));
         
+
         return versementPeriodique;
         
     }
