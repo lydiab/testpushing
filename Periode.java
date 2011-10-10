@@ -98,6 +98,10 @@ public class Periode {
         
         return versementCapitalCumulatif;
     }
+
+    public void setCapitalDebut(double capitalDebut) {
+        this.capitalDebut = capitalDebut;
+    }
     
     
     /**
