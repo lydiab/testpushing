@@ -1,21 +1,21 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package ca.uqam.inf2015.aut2011.protagoras;
 
 import java.util.ArrayList;
 
 /**
  *
- * @author Netbook
+ * @author Équipe L.M.O.
  */
 public class PretCalcule extends Pret {
     
     private double versementPeriodique;
-    private ArrayList amortissement;
+    private ArrayList<Periode> amortissement;
     
     
+    /**
+     * 
+     * Constructeur de la class PretCalcule
+     */
     public PretCalcule() {
         
         super();
@@ -23,33 +23,39 @@ public class PretCalcule extends Pret {
         amortissement = new ArrayList();
     }
     
+    /**
+     * 
+     * @return double Le monant du versement périodique
+     */
     public double getVersementPeriodique() {
         
         return versementPeriodique;
     }
     
+    /**
+     * 
+     * @param double Le monant du versement périodique
+     */
     public void setVersementPeriodique(double versementPeriodique) {
         
         this.versementPeriodique = versementPeriodique;
     }
     
-    public ArrayList getAmortissement() {
+    /**
+     * 
+     * @return ArrayList<Periode> La liste des amortissements
+     */
+    public ArrayList<Periode> getAmortissement() {
         
         return amortissement;
     }
     
-    public void setAmortissement(ArrayList amortissement) {
+    /**
+     * 
+     * @param ArrayList<Periode> La liste des amortissements
+     */
+    public void setAmortissement(ArrayList<Periode> amortissement) {
         
         this.amortissement = amortissement;
-    }
-    
-    public void ajouterAmortissement(Periode amortissement) {
-        
-        this.amortissement.add(amortissement);
-    }
-    
-    public void supprimerAmortissement(int index) {
-        
-        amortissement.remove(index);
     }
 }
