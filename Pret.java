@@ -1,12 +1,10 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package ca.uqam.inf2015.aut2011.protagoras;
+
+import java.util.ArrayList;
 
 /**
  *
- * @author Netbook
+ * @author Équipe L.M.O.
  */
 public class Pret {
     
@@ -18,6 +16,10 @@ public class Pret {
     private double tauxInteret;
     private int frequenceComposition;
     
+    /**
+     * 
+     * Constructeur de la class Pret
+     */
     public Pret() {
         
         id = "";
@@ -29,6 +31,7 @@ public class Pret {
         frequenceComposition = 0;
     }
     
+<<<<<<< HEAD
     
     public Pret(String id, String description, double montant, int nombreAnnee,
                      int frequenceRemboursement, double tauxInteret, 
@@ -43,73 +46,175 @@ public class Pret {
         this.frequenceComposition = frequenceComposition;
     }
     
+=======
+    /**
+     * 
+     * @return String Id du prêt
+     */
+>>>>>>> 6983f181e1d0b1d2173b50df55f3ec3c6be2be12
     public String getId() {
         
         return id;
     }
     
+    /**
+     * 
+     * @return String Description du prêt
+     */
     public String getDescription() {
         
         return description;
     }
     
+    /**
+     * 
+     * @return double Montant du prêt
+     */
     public double getMontant() {
         
         return montant;
     }
     
+    /**
+     * 
+     * @return int Nombre d'année du prêt
+     */
     public int getNombreAnnee() {
     
         return nombreAnnee;
     }
     
+    /**
+     * 
+     * @return int La fréquence de remboursement
+     */
     public int getFrequenceRemboursement() {
         
         return frequenceRemboursement;
     }
     
+    /**
+     * 
+     * @return double Le taux d'intérêt
+     */
     public double getTauxInteret() {
         
         return tauxInteret;
     }
     
+    /**
+     * 
+     * @return int La fréquence de la composition
+     */
     public int getFrequenceComposition() {
         
         return frequenceComposition;
     }
     
     
+    /**
+     * 
+     * @param String L'id du prêt
+     */
     public void setId(String id) {
         this.id = id;
     }
     
+    /**
+     * 
+     * @param String La description du prêt
+     */
     public void setDescription(String description) {
         
         this.description = description;
     }
     
+    /**
+     * 
+     * @param double Le montant du prêt
+     */
     public void setMontant(double montant) {
         
         this.montant = montant;
     }
     
+    /**
+     * 
+     * @param int Le nombre d'année du prêt
+     */
     public void setNombreAnnee(int nombreAnnee) {
         
         this.nombreAnnee = nombreAnnee;
     }
     
+    /**
+     * 
+     * @param int La fréequence de rembourssement
+     */
     public void setFrequenceRemboursement(int frequenceRemboursement) {
         
         this.frequenceRemboursement = frequenceRemboursement;
     }
     
+    /**
+     * 
+     * @param double Le taux d'intéret du prêt
+     */
     public void setTauxInteret(double tauxInteret) {
         
         this.tauxInteret = tauxInteret;
     }
     
+    /**
+     * 
+     * @param int La fréquence de la composition
+     */
     public void setFrequenceComposition(int frequenceComposition) {
         
         this.frequenceComposition = frequenceComposition;
+    }
+    
+    /**
+     * 
+     * Retourne la liste des descriptions des erreurs des données.
+     * 
+     * @return ArrayList<String> Liste d'erreur des données dans l'objet.
+     */
+    public ArrayList<String> validerPret() {
+        
+        ArrayList<String> listeErreur = new ArrayList();
+        
+        /** Valider le montant */
+        if (this.montant <= 0) {
+            
+            listeErreur.add("Le montant doit être un nombre supérieur à 0.");
+        }
+        
+        /** Valider le nombreAnnee */
+        if (this.nombreAnnee <= 0) {
+            
+            listeErreur.add("Le nombre d'année doit être supérieur à 0");
+        }
+        
+        /** Valider la frequenceRemboursement */
+        if(this.frequenceRemboursement <= 0) {
+            
+            listeErreur.add("La fréquence de remboursement doit être supérieur à 0");
+        }
+        
+        /** Valider la tauxInteret */
+        if(this.tauxInteret < 0) {
+            
+            listeErreur.add("Le taux d'intéret doit être supérieur ou égal à 0");
+        }
+        
+        /** Valider la frequenceComposition */
+        if(this.frequenceComposition <= 0) {
+            
+            listeErreur.add("Le fréquance de composition doit être supérieur à 0");
+        }
+        
+        return listeErreur;
+    
     }
 }
