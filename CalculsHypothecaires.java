@@ -251,10 +251,8 @@ public class CalculsHypothecaires {
     public double formater2decimales (double nombre) throws ParseException{
         
         BigDecimal big = new BigDecimal(Double.toString(nombre));
-        big = big.setScale(2,BigDecimal.ROUND_HALF_UP);
-       
-        System.out.println(big);
-        
+        big.setScale(2,BigDecimal.ROUND_HALF_UP);
+   
         return big.doubleValue(); 
     }
 }
