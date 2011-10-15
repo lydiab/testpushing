@@ -43,9 +43,7 @@ public class Periode {
         return versementTotal;
     }
 
-    public void setCapitalDebut(double capitalDebut) {
-        this.capitalDebut = capitalDebut;
-    }
+   
     
     /**
      * 
@@ -99,6 +97,10 @@ public class Periode {
     public double getVersementCapitalCumulatif() {
         
         return versementCapitalCumulatif;
+    }
+
+    public void setCapitalDebut(double capitalDebut) {
+        this.capitalDebut = capitalDebut;
     }
     
     

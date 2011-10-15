@@ -30,6 +30,8 @@ public class Pret {
         tauxInteret = 0;
         frequenceComposition = 0;
     }
+
+      
     
     public Pret(String id, String description, double montant, int nombreAnnee,
                      int frequenceRemboursement, double tauxInteret, 
@@ -43,6 +45,7 @@ public class Pret {
         this.tauxInteret = tauxInteret;
         this.frequenceComposition = frequenceComposition;
     }
+
 
     /**
      * 
