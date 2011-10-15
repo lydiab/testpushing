@@ -23,19 +23,19 @@ public class NewMain {
         Gson jj = new Gson ();
         
         Pret p = new Pret ("test1", "test1", 100000.00, 25, 12, 6, 2);
-        
-        double a= p.getMontant();
-        
-        DecimalFormat df = new DecimalFormat ("0.00");
+        CalculsHypothecaires cp = new CalculsHypothecaires ();
         
         
-        String t = df.format(100);
- 
-        System.out.println(t);
-          
-        double g = 1000.0000;
-   
-        System.out.println(g);
+        
+       PretCalcule ppp = cp.creerPretCalcule(p);
+       
+       
+      String resultat = jj.toJson(ppp);
+        
+      System.out.println(resultat);
+      
+      
+        
 
     }
 }
