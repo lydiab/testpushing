@@ -19,15 +19,15 @@ public class Principale {
      * @throws  Exception   Si le répertoire n'existe pas, ne contient aucun
      *                      fichiers .json ou n'est pas disponible en lecture.
      */
-    private static ArrayList<File> listeFichiers( String repertoireFichiers ) 
+    private static ArrayList<File> creerListeFichiers( String repertoireFichiersIntrants ) 
             throws Exception {
         
-        File repertoireIntrants = new File( repertoireFichiers );
+        File repertoireIntrants = new File( repertoireFichiersIntrants );
         ArrayList<File> listeFichiersIntrants = new ArrayList<File>();
         
         //vérifier le répertoire et générer la liste des fichiers
-        if( repertoireIntrants.isDirectory() /*&& repertoireIntrants.exists()  
-                && repertoireIntrants.canRead()*/ ) {
+        if( repertoireIntrants.isDirectory() && repertoireIntrants.exists()  
+                && repertoireIntrants.canRead() ) {
             
             File[] temp = repertoireIntrants.listFiles();
             
@@ -51,26 +51,28 @@ public class Principale {
     }
     
     /**
+     * creerListPrets
      * Retourne la liste des prets en format JSON contenus dans tous les fichiers.
      * 
      * @param   ArrayList<File> La liste des fichiers
      * @return  ArrayList<Pret> La liste des prets
      * @throws  Exception   Si la liste contient des objets JSON invalides
      */
-    private static ArrayList<Pret> listePrets( ArrayList<File> listeFichiers )
-            throws Exception {
+    private static ArrayList<Pret> creerListePrets( ArrayList<File> listeFichiers,
+            String repertoireFichiersExtrants ) throws Exception {
             
         FileReader fr;
         BufferedReader br;
         ArrayList<Pret> listePrets = new ArrayList<Pret>();
+        int indiceLecture = 0;
         
         try {
-            
             //parcours de la liste des fichiers et lecture du contenu
-            for( int i = 0; i < listeFichiers.size() ; ++i ) {
+            for( ; indiceLecture < listeFichiers.size() ; 
+                    ++indiceLecture ) {
                 
                 String contenuFichier = "";
-                fr = new FileReader( listeFichiers.get( i ) );
+                fr = new FileReader( listeFichiers.get( indiceLecture ) );
                 br = new BufferedReader( fr );
                 while( br.ready() ) {
                     contenuFichier += br.readLine();
@@ -82,18 +84,36 @@ public class Principale {
             }
             
             
-            
+        
         } catch( FileNotFoundException e) {
             throw new Exception( "Fichier non-trouvé ou impossible à lire." );
+        } catch( JsonSyntaxException jse ) {
+            creerFichierErreur( listeFichiers.get( indiceLecture ).getName(),
+                    repertoireFichiersExtrants, "Erreur dans la lecture du "
+                    + "format JSON." );
         }
-        
         return listePrets;
     }
 
+    private static void creerFichierErreur( String nomFichier, 
+            String repertoireFichiersExtrants,String messageErreur ) {
+    
+        File repertoireExtrants = new File( repertoireFichiersExtrants );
+        
+        try {
+            
+            
+            
+        } catch( Exception e ) {
+            System.out.println( e.fillInStackTrace() );
+        }
+        
+    
+    }
+    
     /**
-     * @param   String[]    Tableau des URL identifiant la localisation du 
-     *                      répertoire contenant les intrants et du répertoire 
-     *                      destiné à contenir les extrants.
+     * @param args Tableau des URL identifiant la localisation du répertoire 
+     * contenant les intrants et du répertoire destiné à contenir les extrants.
      */
     public static void main( String[] args ) {
         
@@ -103,18 +123,11 @@ public class Principale {
                         + " manquants ou invalides" );
             
             //récupère la liste des fichiers dans le répertoire intrant
-            ArrayList<File> listeFichierIntrants = listeFichiers( args[0] );
+            ArrayList<File> listeFichierIntrants = creerListeFichiers( args[0] );
             
             //récupère la liste des prets en format JSON dans les fichiers
-            ArrayList<Pret> listePretsOriginaux = listePrets( listeFichierIntrants );
-
-            for( int i = 0; i < listeFichierIntrants.size() ; ++i )
-                System.out.println( listeFichierIntrants.get( i ).getName() );
+            ArrayList<Pret> listePretsOriginaux = creerListePrets( listeFichierIntrants, args[1] );
             
-            System.out.println(listePretsOriginaux.size());
-            for( int i = 0; i < listePretsOriginaux.size() ; ++i )
-                System.out.println( listePretsOriginaux.get( i ).getDescription() );
-          
         } catch( JsonSyntaxException jse ) {
             System.out.println( jse.fillInStackTrace() );
         } catch( ArrayIndexOutOfBoundsException aob ) {

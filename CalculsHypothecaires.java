@@ -252,8 +252,8 @@ public class CalculsHypothecaires {
         
         BigDecimal big = new BigDecimal(Double.toString(nombre));
         big = big.setScale(2,BigDecimal.ROUND_HALF_UP);
-       
-        System.out.println(big);
+        
+        System.out.println("Big : " + big);
         
         return big.doubleValue(); 
     }
