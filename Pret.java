@@ -186,31 +186,31 @@ public class Pret {
         /** Valider le montant */
         if (this.montant <= 0) {
             
-            listeErreur.add("Le montant doit être un nombre supérieur à 0.");
+            listeErreur.add("Le montant doit etre un nombre superieur a 0.");
         }
         
         /** Valider le nombreAnnee */
         if (this.nombreAnnee <= 0) {
             
-            listeErreur.add("Le nombre d'année doit être supérieur à 0");
+            listeErreur.add("Le nombre d annees doit etre superieur a 0");
         }
         
         /** Valider la frequenceRemboursement */
         if(this.frequenceRemboursement <= 0) {
             
-            listeErreur.add("La fréquence de remboursement doit être supérieur à 0");
+            listeErreur.add("La frequence de remboursement doit etre superieur a 0");
         }
         
         /** Valider la tauxInteret */
         if(this.tauxInteret < 0) {
             
-            listeErreur.add("Le taux d'intéret doit être supérieur ou égal à 0");
+            listeErreur.add("Le taux d interet doit etre superieur ou egal a 0");
         }
         
         /** Valider la frequenceComposition */
         if(this.frequenceComposition <= 0) {
             
-            listeErreur.add("Le fréquance de composition doit être supérieur à 0");
+            listeErreur.add("Le frequence de composition doit etre superieur a 0");
         }
         
         return listeErreur;

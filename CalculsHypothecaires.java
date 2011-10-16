@@ -5,7 +5,6 @@
 package ca.uqam.inf2015.aut2011.protagoras;
 
 import java.math.BigDecimal;
-import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.util.ArrayList;
 
