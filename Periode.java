@@ -1,4 +1,4 @@
-package ca.uqam.inf2015.aut2011.protagoras;
+package ca.uqam.inf2015.aut2011.tp1.protagoras;
 
 /**
  *

@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package ca.uqam.inf2015.aut2011.protagoras;
+package ca.uqam.inf2015.aut2011.tp1.protagoras;
 
 import java.math.BigDecimal;
 import java.text.ParseException;
